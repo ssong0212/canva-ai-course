@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;padding:12px;background:#f3f0ea;font:12px monospace}
+canvas{image-rendering:pixelated;background:#fff;border:1px solid #ccc;margin:4px}</style>
+<div id="o"></div>
+<script src="../src/pets.js"></script>
+<script>
+const o=document.getElementById('o');
+for (const [pet,act] of [['cat','idle'],['dog','idle'],['bunny','idle'],['chick','idle'],['cat','sit'],['bunny','sit']]) {
+  const cv=document.createElement('canvas');
+  cv.style.width='256px'; cv.style.height='256px';
+  o.appendChild(cv);
+  PetSprites.render(cv,pet,{size:256,dpr:1,action:act,t:0.2,facing:1});
+}
+</script>

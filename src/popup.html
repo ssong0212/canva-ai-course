@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pixel Pets</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="bar">
+    <h1>Pixel Pets</h1>
+    <label class="switch" title="Show the pet on pages">
+      <input type="checkbox" id="enabled" checked>
+      <span class="track"><span class="knob"></span></span>
+    </label>
+  </header>
+
+  <div class="stage">
+    <canvas id="preview" width="96" height="96"></canvas>
+    <div class="ground"></div>
+  </div>
+
+  <section>
+    <h2>Pet</h2>
+    <div class="pets" id="pets"></div>
+  </section>
+
+  <section>
+    <h2>Size <span class="val" id="sizeVal"></span></h2>
+    <input type="range" id="size" min="40" max="140" step="4">
+  </section>
+
+  <section>
+    <h2>Speed <span class="val" id="speedVal"></span></h2>
+    <input type="range" id="speed" min="0.4" max="2.2" step="0.1">
+  </section>
+
+  <section class="rowline">
+    <label for="follow">Chase the cursor</label>
+    <label class="switch small">
+      <input type="checkbox" id="follow">
+      <span class="track"><span class="knob"></span></span>
+    </label>
+  </section>
+
+  <p class="tip">Click to pet it · drag to carry it · double-click to make it jump</p>
+
+  <script src="pets.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

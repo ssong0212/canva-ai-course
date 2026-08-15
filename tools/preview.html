@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>sprite sheet preview</title>
+<style>
+  body { margin: 0; padding: 16px; background: #f3f0ea; font: 12px ui-monospace, monospace; color: #333; }
+  .row { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 6px; }
+  .label { width: 120px; text-align: right; }
+  canvas { image-rendering: pixelated; background: #fff; border: 1px solid #ddd; }
+</style>
+<div id="out"></div>
+<script src="../src/pets.js"></script>
+<script>
+  const ACTIONS = ['idle', 'walk', 'run', 'sit', 'sleep', 'happy', 'drag'];
+  const out = document.getElementById('out');
+  for (const pet of PetSprites.ORDER) {
+    for (const action of ACTIONS) {
+      const row = document.createElement('div');
+      row.className = 'row';
+      const label = document.createElement('div');
+      label.className = 'label';
+      label.textContent = pet + ' / ' + action;
+      row.appendChild(label);
+      for (let i = 0; i < 4; i++) {
+        const cv = document.createElement('canvas');
+        cv.style.width = '96px';
+        cv.style.height = '96px';
+        row.appendChild(cv);
+        PetSprites.render(cv, pet, {
+          size: 96, dpr: 1, action, t: i * 0.13,
+          facing: 1, blink: false
+        });
+      }
+      out.appendChild(row);
+    }
+  }
+</script>
