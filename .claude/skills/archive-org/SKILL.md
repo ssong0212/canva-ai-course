@@ -41,6 +41,10 @@ python3 scripts/ia.py wayback example.com --timestamp 20150101
 스크립트는 요청 사이에 0.3초를 쉬고(`--delay` 로 조정), 다운로드한 파일은
 크기·`ffprobe` 로 검증한다. 직접 curl/urllib을 쓸 때도 같은 규칙을 지킨다.
 
+`scripts/test_ia.py` 는 실제 archive.org 응답 형태를 고정 데이터로 재현해
+네트워크 없이 파싱·파생본 선택·cursor 페이징을 검증한다. 스크립트를 고쳤으면
+`python3 scripts/test_ia.py` 를 돌려라.
+
 ## 1) 검색 — advancedsearch
 
 ```

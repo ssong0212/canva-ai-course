@@ -104,7 +104,7 @@ def cmd_search(a):
         [
             [
                 d.get("identifier", ""),
-                d.get("title", ""),
+                flat(d.get("title")),
                 d.get("year", ""),
                 d.get("downloads", ""),
                 (d.get("licenseurl") or "확인 필요"),
@@ -138,7 +138,7 @@ def cmd_scrape(a):
         print(json.dumps(out, ensure_ascii=False, indent=2))
     else:
         table(
-            [[i.get("identifier", ""), i.get("title", ""), i.get("year", "")] for i in out],
+            [[i.get("identifier", ""), flat(i.get("title")), i.get("year", "")] for i in out],
             ["identifier", "title", "year"],
         )
         print(f"\n{len(out)}건")
@@ -160,16 +160,14 @@ def cmd_meta(a):
         print(json.dumps(body, ensure_ascii=False, indent=2))
         return
     m = body["metadata"]
-    print(f"title    : {m.get('title', '')}")
-    print(f"creator  : {m.get('creator', '')}")
-    print(f"date     : {m.get('date', m.get('year', ''))}")
+    print(f"title    : {flat(m.get('title'))}")
+    print(f"creator  : {flat(m.get('creator'))}")
+    print(f"date     : {flat(m.get('date') or m.get('year'))}")
     print(f"license  : {m.get('licenseurl') or '없음 — 컬렉션 성격으로 판단, 애매하면 확인 필요'}")
     print(f"source   : {details_url(a.identifier)}")
-    desc = m.get("description", "")
-    if isinstance(desc, list):
-        desc = " ".join(desc)
+    desc = flat(m.get("description"))
     if desc:
-        print(f"desc     : {str(desc)[:300]}")
+        print(f"desc     : {desc[:300]}")
     print()
     files = body.get("files", [])
     table(
@@ -181,6 +179,13 @@ def cmd_meta(a):
         ["name", "format", "size", "length"],
     )
     print(f"\n{len(files)}개 파일. 원본이 아니라 파생본을 골라라 — `ia.py pick {a.identifier}`")
+
+
+def flat(v):
+    """archive.org 는 같은 필드를 문자열로도 리스트로도 돌려준다."""
+    if isinstance(v, list):
+        return " / ".join(str(x) for x in v)
+    return "" if v is None else str(v)
 
 
 def human(n):
