@@ -73,6 +73,7 @@ in SECURITY.md.
 from __future__ import annotations
 
 import ipaddress
+import os
 import re
 import socket
 import threading
@@ -353,6 +354,30 @@ _dns_patch_lock = threading.Lock()
 
 
 @contextmanager
+def _trusted_proxy_hosts() -> set[str]:
+    """
+    Hostnames of the egress proxies configured through the standard
+    ``HTTPS_PROXY``/``HTTP_PROXY`` environment variables.
+
+    Sandboxed environments (e.g. Claude Code remote sessions) force all
+    outbound HTTPS through a local proxy, often on a loopback address.
+    Connections to that proxy must bypass the non-public-IP check —
+    otherwise no request can leave the machine at all. Only the proxy
+    hop is exempted: the target URL itself is still validated by
+    :func:`validate_url_strict` before any connection is attempted, and
+    the proxy's own gateway enforces its network policy.
+    """
+    hosts: set[str] = set()
+    for var in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
+        value = os.environ.get(var)
+        if not value:
+            continue
+        parsed = urlparse(value if "://" in value else f"http://{value}")
+        if parsed.hostname:
+            hosts.add(parsed.hostname.lower())
+    return hosts
+
+
 def _pin_dns(hostname: str, pinned_ip: str, port: int) -> Iterator[None]:
     """
     Temporarily override ``socket.getaddrinfo`` so the named host resolves
@@ -397,6 +422,12 @@ def _pin_dns(hostname: str, pinned_ip: str, port: int) -> Iterator[None]:
                 f"url_safety: address family {family} refused for pinned "
                 f"IPv4 host {host}",
             )
+
+        # Branch 1b: the configured egress proxy (mandatory in sandboxed
+        # environments, frequently on a loopback address) is exempt from
+        # the non-public-IP check; the target URL was already validated.
+        if host and host.lower() in _trusted_proxy_hosts():
+            return original_getaddrinfo(host, requested_port, *args, **kwargs)
 
         # Branch 2: every OTHER hostname (redirect target, embedded
         # subresource, library bookkeeping) gets resolved by the real
