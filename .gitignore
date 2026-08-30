@@ -8,3 +8,4 @@ node_modules/
 .claude/skills/seo/ms-playwright/
 .claude/skills/seo/runtime-state.json
 .claude/skills/seo/.runtime-state.next
+.claude/skills/seo/.setup.lock
