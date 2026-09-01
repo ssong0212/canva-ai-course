@@ -1016,9 +1016,25 @@ $('dDelete').onclick=()=>{
 };
 
 /* ================= 내보내기/가져오기 ================= */
-$('btnExport').onclick=()=>{
-  const data={exportedAt:new Date().toISOString(),prompts:allPrompts()};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+$('btnExport').onclick=async()=>{
+  const json=JSON.stringify({exportedAt:new Date().toISOString(),prompts:allPrompts()},null,2);
+  /* claude.ai 아티팩트 뷰어에서는 downloads 권한으로, 그 외에는 앵커 다운로드로 저장 */
+  if(window.claude&&window.claude.use){
+    try{
+      const dl=await window.claude.use('downloads');
+      if(dl){
+        try{
+          await dl.save({filename:'prompt-hub-export.json',data:json});
+          toast('JSON 파일로 저장했어요');
+        }catch(err){
+          if(err&&err.code==='declined')toast('저장을 취소했어요');
+          else copyText(json,'저장 대신 JSON을 클립보드에 복사했어요');
+        }
+        return;
+      }
+    }catch(e){}
+  }
+  const blob=new Blob([json],{type:'application/json'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob); a.download='prompt-hub-export.json';
   a.click(); URL.revokeObjectURL(a.href);
