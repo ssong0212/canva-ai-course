@@ -1,0 +1,14 @@
+# 로그인 세션 — 절대 커밋/공유 금지
+naver-profile/
+
+node_modules/
+package-lock.json
+
+# 개인 사진·영상·생성물은 로컬에만
+input/photos/*
+!input/photos/.gitkeep
+input/videos/*
+!input/videos/.gitkeep
+drafts/*
+!drafts/.gitkeep
+!drafts/_example.json

@@ -1,0 +1,16 @@
+{
+  "name": "naver-blog-auto-writer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "사진 + 한줄 메모 → 네이버 SEO 공식 적용 블로그 글 → 임시저장까지 (발행은 항상 사람이)",
+  "scripts": {
+    "login": "node scripts/naver_login.js",
+    "draft": "node scripts/naver_draft.js",
+    "probe": "node scripts/probe_selectors.js",
+    "mosaic": "node scripts/mosaic.js"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0",
+    "sharp": "^0.33.5"
+  }
+}
