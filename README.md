@@ -77,3 +77,7 @@ fox: {
   c: { body:'#ef7d3a', dark:'#c85d24', light:'#ffe9d6', line:'#3b2b28', nose:'#43302c' }
 }
 ```
+
+## 쏭컷 (SongCut)
+
+공백 0초 컷편집 클로드 스킬 + 웹 편집기 + 랜딩페이지는 [`songcut/`](songcut/README.md) 폴더에 있습니다.

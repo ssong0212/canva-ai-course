@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>쏭컷 웹 편집기</title>
+  <meta name="description" content="말하는 영상의 공백을 브라우저에서 바로 잘라 내고 쇼츠로 내보냅니다. 영상은 서버로 올라가지 않습니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="index.html">쏭<b>컷</b></a>
+      <nav><a href="index.html#packages">패키지</a><a href="index.html#install">클로드 스킬</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 style="font-size:clamp(26px,4vw,36px);margin-top:28px">웹 편집기</h1>
+    <p class="muted" style="margin:0">영상은 <b>내 브라우저 안에서만</b> 처리됩니다. 서버로 올라가지 않습니다.</p>
+
+    <div class="editor">
+      <div>
+        <label id="drop" class="drop">
+          <input id="file" type="file" accept="video/*,audio/*" hidden>
+          <h3>영상을 여기로 끌어다 놓거나 눌러서 고르세요</h3>
+          <p class="muted" style="margin:0">mp4 · webm · mov · 10분 안쪽 영상을 권합니다(긴 영상은 메모리를 많이 씁니다)</p>
+        </label>
+
+        <div id="work" class="hidden">
+          <div class="stage"><canvas id="view" width="1080" height="1920"></canvas></div>
+          <canvas id="timeline" class="timeline" aria-label="파형 타임라인. 빨간 칸이 잘릴 공백입니다. 아래 띠의 칸을 누르면 살리거나 자를 수 있습니다."></canvas>
+          <p class="muted" style="font-size:13px;margin:6px 0 0">위쪽 파형을 누르면 그 자리로 이동 · <b>아래 띠</b>의 칸을 누르면 살리기(초록) ↔ 자르기(빨강)가 바뀝니다</p>
+          <div class="row" style="margin-top:12px">
+            <button id="play" class="btn primary">▶ 미리보기</button>
+            <label class="row" style="font-size:14px;gap:6px"><input id="skip" type="checkbox" checked> 자른 결과로 보기</label>
+            <span id="clock" class="muted" style="font-size:14px;margin-left:auto">0:00.0</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="card">
+          <h3>① 공백 자르기</h3>
+          <div class="stats">
+            <div><b id="sBefore">-</b><span>원래 길이</span></div>
+            <div><b id="sAfter">-</b><span>자른 뒤</span></div>
+            <div><b id="sPct">-</b><span>줄어듦</span></div>
+          </div>
+          <div class="field"><label for="db">공백으로 볼 소리 크기 <span id="dbV">-35 dB</span></label><input id="db" type="range" min="-60" max="-15" step="1" value="-35"></div>
+          <div class="field"><label for="min">이보다 긴 공백만 <span id="minV">0.40초</span></label><input id="min" type="range" min="0.1" max="2" step="0.05" value="0.4"></div>
+          <div class="field"><label for="pad">말 앞뒤 여유 <span id="padV">0.12초</span></label><input id="pad" type="range" min="0" max="0.5" step="0.01" value="0.12"></div>
+          <p class="muted" style="font-size:13px;margin:0">말끝이 잘리면 <b>여유</b>를 늘리고, 너무 많이 잘리면 <b>소리 크기</b>를 왼쪽으로 내리세요.</p>
+        </div>
+
+        <div class="card">
+          <h3>② 화면과 글자</h3>
+          <div class="field"><label for="layout">화면 비율</label>
+            <select id="layout"><option value="shorts">쇼츠 9:16 (1080×1920)</option><option value="square">정사각 1:1 (1080×1080)</option><option value="original">원본 그대로</option></select>
+          </div>
+          <div class="field"><label for="title">첫 화면 제목 (후킹 문구)</label><input id="title" type="text" placeholder="예: 캔바 AI 3분 정리" maxlength="40"></div>
+          <div class="field"><label for="titleSec">제목이 떠 있는 시간 <span id="titleSecV">3초</span></label><input id="titleSec" type="range" min="1" max="10" step="1" value="3"></div>
+          <div class="field"><label for="hook">첫 3초 후킹 — 이 시간부터 3초를 맨 앞에</label><input id="hook" type="number" min="0" step="0.5" placeholder="비우면 안 씀 (예: 12)"></div>
+          <div class="field"><label for="srt">자막 (.srt · 원본 영상 기준 시간)</label><input id="srt" type="file" accept=".srt,text/plain"></div>
+          <p id="srtInfo" class="muted" style="font-size:13px;margin:0">자막은 자동으로 받아 적지 않습니다. 클로드에게 대본으로 .srt 를 만들어 달라고 하세요.</p>
+        </div>
+
+        <div class="card">
+          <h3>③ 내보내기</h3>
+          <button id="export" class="btn primary" style="width:100%" disabled>영상 내보내기</button>
+          <div id="prog" class="hidden" style="margin-top:10px"><div class="progress"><i id="bar"></i></div><p id="progText" class="muted" style="font-size:13px;margin:6px 0 0"></p></div>
+          <p class="muted" style="font-size:13px">영상 길이만큼(1배속) 걸립니다. 그동안 이 탭을 앞에 두세요. 크롬은 mp4, 그 밖의 브라우저는 webm 으로 받습니다.</p>
+          <div class="row">
+            <button id="json" class="btn small" disabled>구간 JSON</button>
+            <button id="ffcmd" class="btn small" disabled>ffmpeg 명령 복사</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <video id="src" playsinline preload="auto" class="hidden"></video>
+  <script src="editor.js"></script>
+</body>
+</html>

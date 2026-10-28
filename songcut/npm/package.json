@@ -1,0 +1,17 @@
+{
+  "name": "creimeta-songcut",
+  "version": "0.1.0",
+  "description": "말하는 영상의 공백을 자동으로 잘라 내고 쇼츠(9:16)·한글 자막으로 바꾸는 클로드 코드 스킬(songcut)을 스킬 폴더에 놓습니다. ffmpeg 만 쓰고 영상은 컴퓨터 밖으로 나가지 않습니다.",
+  "keywords": ["claude", "claude-code", "skills", "video", "silence-removal", "shorts", "korean"],
+  "license": "SEE LICENSE IN README.md",
+  "author": "크리메타쏭 (CreiMeta Song)",
+  "type": "module",
+  "bin": { "creimeta-songcut": "cli.mjs" },
+  "files": ["cli.mjs", "brand.mjs", "skill/", "README.md"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node cli.mjs --self-test",
+    "check": "node cli.mjs --check"
+  },
+  "publishConfig": { "access": "public" }
+}

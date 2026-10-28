@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>쏭컷 — 공백 0초 컷편집</title>
+  <meta name="description" content="말하는 영상의 공백을 자동으로 잘라 내고 쇼츠·한글 자막으로 바꿉니다. 웹 편집기와 클로드 코드 스킬로 씁니다. 영상은 내 컴퓨터 밖으로 나가지 않습니다.">
+  <meta property="og:title" content="쏭컷 — 공백 0초 컷편집">
+  <meta property="og:description" content="말하는 영상의 공백을 자동으로 잘라 내고 쇼츠·한글 자막으로. 웹 편집기 + 클로드 코드 스킬.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#fbf7f0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="#">쏭<b>컷</b></a>
+      <nav>
+        <a href="#how">세 걸음</a>
+        <a href="#install">클로드 스킬</a>
+        <a href="#packages">패키지</a>
+        <a class="btn small primary" href="editor.html">웹 편집기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">강의 · 리뷰 · 브이로그 컷편집</span>
+        <h1>말하는 영상,<br>공백 <span style="color:var(--brand)">0초</span>로.</h1>
+        <p class="lead">「음…」 하고 멈춘 자리, 숨 고르는 자리를 소리 크기로 찾아 자동으로 잘라 냅니다. 쇼츠 화면으로 바꾸고 첫 3초 제목과 한글 자막까지 입힙니다.</p>
+        <div class="chips"><span class="chip">0원부터</span><span class="chip">영상 업로드 없음</span><span class="chip">한글 자막</span><span class="chip">웹 · 클로드 코드 둘 다</span></div>
+        <div class="row">
+          <a class="btn primary" href="editor.html">웹에서 바로 편집하기 →</a>
+          <a class="btn" href="#install">클로드 스킬 받기</a>
+        </div>
+
+        <div class="hero-demo" aria-label="파형 그림: 빨간 공백 구간이 줄어들며 말하는 구간만 남는 모습">
+          <svg viewBox="0 0 1000 120" role="img">
+            <title>공백이 잘려 나가는 파형</title>
+            <g fill="#ffffff" opacity=".9" id="wave"></g>
+            <rect class="cutblock" x="250" y="10" width="140" height="100" rx="8" fill="#ff5a5f" opacity=".55"></rect>
+            <rect class="cutblock" x="610" y="10" width="110" height="100" rx="8" fill="#ff5a5f" opacity=".55"></rect>
+          </svg>
+          <div class="legend"><span><i class="sw" style="background:#fff"></i>말하는 구간 — 남김</span><span><i class="sw" style="background:#ff5a5f"></i>공백 — 잘라 냄</span></div>
+        </div>
+        <p class="note">손 들어 볼까요? 컷편집 하다가 <b>영상 길이보다 편집 시간이 더 오래</b> 걸려 본 적 있는 분 🙋</p>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <span class="eyebrow">세 걸음</span>
+        <h2>올리고, 고르고, 받으면 끝</h2>
+        <div class="grid three" style="margin-top:24px">
+          <div class="card"><span class="num">1</span><h3>공백 자르기</h3><p class="muted">영상을 열면 파형이 그려지고 공백이 빨갛게 표시됩니다. 슬라이더 3개(소리 크기 · 공백 길이 · 앞뒤 여유)로 얼마나 자를지 정합니다.</p></div>
+          <div class="card"><span class="num">2</span><h3>살릴 곳 고르기</h3><p class="muted">일부러 쉰 「뜸」은 살리고 싶죠. 타임라인 아래 띠의 칸을 누르면 살리기 ↔ 자르기가 바뀝니다. 미리보기는 자른 결과 그대로 재생됩니다.</p></div>
+          <div class="card"><span class="num">3</span><h3>쇼츠로 받기</h3><p class="muted">9:16 · 1:1 · 원본 중 고르고, 첫 화면 제목·후킹 구간·자막(.srt)을 넣어 내보냅니다. 흐린 배경이 자동으로 깔립니다.</p></div>
+        </div>
+        <p class="note">여러분 영상에서 가장 많이 잘려 나갈 것 같은 곳은 어디일까요? 말 시작 전? 화면 넘길 때? 직접 열어서 확인해 보세요.</p>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="wrap">
+        <span class="eyebrow">클로드 코드 스킬</span>
+        <h2>클로드에게 "공백 잘라 줘"라고 말하기</h2>
+        <p class="lead">클로드 코드를 쓰신다면 스킬을 한 줄로 깔 수 있습니다. 깔고 나면 <b>"쏭컷으로 강의.mp4 공백 잘라 줘"</b>라고 말하면 됩니다.</p>
+
+        <div class="grid" style="margin-top:20px">
+          <div class="card">
+            <h3>① 명령 앞에 <code>!</code> 붙이기 <span class="muted" style="font-size:15px">— 제일 확실합니다</span></h3>
+            <div class="cmd"><code data-cmd="bang"></code><button type="button">복사</button></div>
+            <p class="muted" style="margin:0">맨 앞의 <code>!</code> 까지 붙여 넣으세요. 중간의 <code>--yes</code> 를 빼면 「받아도 되나요?」에서 멈춥니다.</p>
+          </div>
+          <div class="card">
+            <h3>② 클로드에게 그냥 말하기</h3>
+            <div class="cmd"><code data-cmd="ask"></code><button type="button">복사</button></div>
+          </div>
+          <div class="card">
+            <h3>③ 터미널(검은 창)에서</h3>
+            <div class="cmd"><code data-cmd="plain"></code><button type="button">복사</button></div>
+            <p class="muted" style="margin:0"><b>윈도우</b>: 윈도우키 → <code>cmd</code> 엔터 · <b>맥</b>: <code>command</code>+<code>스페이스</code> → <code>터미널</code> 엔터</p>
+          </div>
+        </div>
+        <p class="note"><b>Node.js</b>(nodejs.org)와 <b>ffmpeg</b>(ffmpeg.org)가 컴퓨터에 있어야 합니다. 깔고 나면 클로드 코드를 <b>한 번 껐다 켜야</b> 스킬이 잡힙니다. 폰이나 브라우저의 클로드 화면에서는 깔아도 내 컴퓨터에 남지 않습니다.</p>
+
+        <h3 style="margin-top:36px">실제로 돌린 출력 <span class="muted" style="font-size:15px">(2026-10-28 · 12초 시험 영상)</span></h3>
+        <pre class="out">$ npx --yes creimeta-songcut --self-test
+songcut 자기시험
+  <span class="ok">✓</span> 남길 구간 계산이 맞다 (공백 2곳 → 조각 3개)
+  <span class="ok">✓</span> 12초 영상의 공백 4.5초를 실제로 잘랐다 12초 → 8.011초
+  <span class="ok">✓</span> 스킬 원본 파일이 패키지에 있다
+<span class="ok">통과</span>
+
+$ node songcut.mjs cut talk.mp4
+끝 — talk_cut.mp4
+  12초 → 8.011초 (3.989초 · 33% 줄임) · 남긴 조각 3개
+
+$ node songcut.mjs shorts talk_cut.mp4 --title "공백 0초 편집 비법" --hook 4 --srt sub.srt
+끝 — talk_cut_shorts.mp4
+  1080x1920 · 11.011초 · 제목 있음 · 첫 3초 후킹 있음 · 자막 있음</pre>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="wrap">
+        <span class="eyebrow">패키지</span>
+        <h2>필요한 만큼만 고르세요</h2>
+        <p class="lead">웹 편집기와 스킬은 무료입니다. 템플릿·교안이 필요할 때만 패키지를 고르세요.</p>
+        <div id="priceGrid" class="grid three" style="margin-top:28px"></div>
+      </div>
+    </section>
+
+    <section id="honest">
+      <div class="wrap">
+        <span class="eyebrow">정직하게</span>
+        <h2>쏭컷이 하지 않는 것</h2>
+        <div class="grid three" style="margin-top:20px">
+          <div class="card"><h3>내용을 이해하지 않습니다</h3><p class="muted">공백은 <b>소리 크기</b>로만 찾습니다. 「재미없는 부분」을 골라 주지는 않습니다. 배경음악이 깔린 영상은 공백이 잘 안 잡힙니다.</p></div>
+          <div class="card"><h3>자막을 받아 적지 않습니다</h3><p class="muted">음성 인식은 없습니다. 대본이 있으면 클로드에게 .srt 로 만들어 달라고 하세요.</p></div>
+          <div class="card"><h3>조회수를 약속하지 않습니다</h3><p class="muted">편집 시간을 줄여 줄 뿐입니다. 웹 편집기 내보내기는 영상 길이만큼(1배속) 걸립니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <span class="eyebrow">자주 묻는 것</span>
+        <h2>궁금한 점</h2>
+        <details><summary>영상이 서버로 올라가나요?</summary><p class="muted">아니요. 웹 편집기는 브라우저 안에서만 처리하고, 클로드 스킬은 내 컴퓨터의 ffmpeg 로 처리합니다.</p></details>
+        <details><summary>어떤 브라우저에서 되나요?</summary><p class="muted">크롬·엣지를 권합니다. 크롬은 mp4 로, 그 밖의 브라우저는 webm 으로 내보낼 수 있습니다. 내보내는 동안 탭을 앞에 두세요.</p></details>
+        <details><summary>한글이 □ 로 깨지면요?</summary><p class="muted">웹 편집기는 Noto Sans KR 을 불러와 씁니다. 스킬은 맑은 고딕·애플 SD 고딕 Neo·나눔고딕을 찾아 쓰고, 없으면 <code>doctor</code> 명령이 알려 줍니다.</p></details>
+        <details><summary>강의에서 수강생과 같이 써도 되나요?</summary><p class="muted">무료 구성은 누구나 쓸 수 있습니다. 교안·실습 파일을 함께 쓰려면 강의 패키지를 확인하세요.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><b id="brandName">크리메타쏭</b> · 쏭컷 — 공백 0초 컷편집</p>
+      <p>스킬과 설치기는 개인·사내·강의 실습에 자유롭게 쓸 수 있고, 그대로 되파는 것은 허락하지 않습니다.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const C = window.SONGCUT;
+      const 명령 = { bang: `!npx --yes ${C.npmPackage}`, ask: `${C.npmPackage} 설치해줘`, plain: `npx --yes ${C.npmPackage}` };
+      document.querySelectorAll("[data-cmd]").forEach((el) => {
+        el.textContent = 명령[el.dataset.cmd];
+        el.nextElementSibling.addEventListener("click", async (e) => {
+          try { await navigator.clipboard.writeText(el.textContent); e.target.textContent = "복사됨 ✓"; } catch { prompt("복사하세요", el.textContent); }
+          setTimeout(() => (e.target.textContent = "복사"), 1600);
+        });
+      });
+      document.getElementById("brandName").textContent = C.brand;
+
+      const grid = document.getElementById("priceGrid");
+      for (const p of C.packages) {
+        const card = document.createElement("div");
+        card.className = "card price" + (p.best ? " best" : "");
+        const 링크 = p.link || C.contact;
+        card.innerHTML = `${p.best ? '<span class="tag">추천</span>' : ""}<h3 style="margin:0"></h3><div class="muted" data-k="desc"></div><div class="amount"></div><ul></ul><a class="btn ${p.best ? "primary" : ""}"></a>`;
+        card.querySelector("h3").textContent = p.name;
+        card.querySelector("[data-k=desc]").textContent = p.desc;
+        card.querySelector(".amount").textContent = p.price;
+        const ul = card.querySelector("ul");
+        p.items.forEach((t) => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        const a = card.querySelector("a");
+        a.textContent = p.link ? p.cta : (C.contact ? "문의하기" : "곧 열립니다");
+        if (링크) a.href = 링크; else { a.setAttribute("aria-disabled", "true"); a.style.opacity = ".55"; a.style.pointerEvents = "none"; }
+        grid.appendChild(card);
+      }
+
+      /* 맨 위 파형 막대 */
+      const g = document.getElementById("wave");
+      for (let i = 0; i < 100; i++) {
+        const x = i * 10 + 2, 공백 = (x > 250 && x < 390) || (x > 610 && x < 720);
+        const h = 공백 ? 4 : 20 + Math.abs(Math.sin(i * 1.7) * 60 + Math.sin(i * .37) * 20);
+        const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        r.setAttribute("x", x); r.setAttribute("y", 60 - h / 2); r.setAttribute("width", 6); r.setAttribute("height", h); r.setAttribute("rx", 3);
+        g.appendChild(r);
+      }
+    })();
+  </script>
+</body>
+</html>
