@@ -6,6 +6,16 @@ window.SONGCUT = {
   brand: "크리메타쏭",
   npmPackage: "creimeta-songcut",
   contact: "",            // 예: "mailto:hello@example.com" 또는 카카오톡 채널 주소
+  /* 사업자 정보 — 직접 판매하는 사이트는 화면 아래에 표시해야 한다(전자상거래법). 빈 칸은 화면에 나오지 않는다. */
+  business: {
+    상호: "",
+    대표자: "",
+    사업자등록번호: "",
+    통신판매업신고번호: "",
+    주소: "",
+    연락처: "",
+    이메일: "",
+  },
   packages: [
     {
       id: "free",

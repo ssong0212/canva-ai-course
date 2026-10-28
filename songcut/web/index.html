@@ -145,6 +145,7 @@ $ node songcut.mjs shorts talk_cut.mp4 --title "공백 0초 편집 비법" --hoo
     <div class="wrap">
       <p><b id="brandName">크리메타쏭</b> · 쏭컷 — 공백 0초 컷편집</p>
       <p>스킬과 설치기는 개인·사내·강의 실습에 자유롭게 쓸 수 있고, 그대로 되파는 것은 허락하지 않습니다.</p>
+      <p id="bizInfo" style="font-size:13px"></p>
     </div>
   </footer>
 
@@ -160,6 +161,7 @@ $ node songcut.mjs shorts talk_cut.mp4 --title "공백 0초 편집 비법" --hoo
         });
       });
       document.getElementById("brandName").textContent = C.brand;
+      document.getElementById("bizInfo").textContent = Object.entries(C.business || {}).filter(([, v]) => v).map(([k, v]) => `${k} ${v}`).join(" · ");
 
       const grid = document.getElementById("priceGrid");
       for (const p of C.packages) {
