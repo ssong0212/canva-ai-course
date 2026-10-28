@@ -122,3 +122,15 @@ footer { padding: 40px 0 60px; color: var(--muted); font-size: 14px; border-top:
 .progress { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
 .progress i { display: block; height: 100%; width: 0; background: var(--brand); transition: width .2s; }
 .hidden { display: none !important; }
+
+/* 추억 영상 목록 */
+.clips { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
+.clips li { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px; }
+.clips img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; background: #000; }
+.clips .meta { display: grid; gap: 4px; font-size: 14px; min-width: 0; }
+.clips .meta input[type="text"] { width: 100%; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 14px var(--font); }
+.clips .meta input[type="number"] { padding: 3px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.clips .ctl { display: flex; flex-direction: column; gap: 4px; }
+.clips .ctl button { width: 34px; height: 28px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; font-weight: 700; }
+.check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; margin: 8px 0; }
+.check input { margin-top: 5px; flex: none; }

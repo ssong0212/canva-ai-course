@@ -20,6 +20,7 @@
     <div class="wrap">
       <a class="logo" href="#">쏭<b>컷</b></a>
       <nav>
+        <a href="#memories">추억 영상</a>
         <a href="#how">세 걸음</a>
         <a href="#install">클로드 스킬</a>
         <a href="#packages">패키지</a>
@@ -31,12 +32,13 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <span class="eyebrow">강의 · 리뷰 · 브이로그 컷편집</span>
+        <span class="eyebrow">강의 컷편집 · 우리 아이 추억 영상</span>
         <h1>말하는 영상,<br>공백 <span style="color:var(--brand)">0초</span>로.</h1>
-        <p class="lead">「음…」 하고 멈춘 자리, 숨 고르는 자리를 소리 크기로 찾아 자동으로 잘라 냅니다. 쇼츠 화면으로 바꾸고 첫 3초 제목과 한글 자막까지 입힙니다.</p>
+        <p class="lead">「음…」 하고 멈춘 자리, 숨 고르는 자리를 소리 크기로 찾아 자동으로 잘라 냅니다. 쇼츠 화면으로 바꾸고 첫 3초 제목과 한글 자막까지 입힙니다. 아이 사진·동영상을 올리면 <b>추억 영상 한 편</b>으로도 만들어 줍니다.</p>
         <div class="chips"><span class="chip">0원부터</span><span class="chip">영상 업로드 없음</span><span class="chip">한글 자막</span><span class="chip">웹 · 클로드 코드 둘 다</span></div>
         <div class="row">
-          <a class="btn primary" href="editor.html">웹에서 바로 편집하기 →</a>
+          <a class="btn primary" href="editor.html">말하기 영상 컷편집 →</a>
+          <a class="btn primary" href="memories.html" style="background:var(--mint);border-color:var(--mint)">추억 영상 만들기 →</a>
           <a class="btn" href="#install">클로드 스킬 받기</a>
         </div>
 
@@ -53,10 +55,25 @@
       </div>
     </section>
 
+    <section id="memories">
+      <div class="wrap">
+        <span class="eyebrow">추억 영상 만들기</span>
+        <h2>사진첩에 잠든 우리 아이 사진,<br>올리기만 하면 영상 한 편</h2>
+        <p class="lead">운동회·생일·여행 사진과 동영상을 한꺼번에 올리세요. 나머지는 쏭컷이 알아서 합니다.</p>
+        <div class="grid three" style="margin-top:24px">
+          <div class="card"><span class="num">1</span><h3>알아서 정리</h3><p class="muted">찍은 날짜순으로 줄을 세우고, 동영상마다 <b>소리가 가장 활발한 구간</b>(웃음·환호)을 골라 씁니다. 사진은 천천히 다가가는 움직임을 넣습니다.</p></div>
+          <div class="card"><span class="num">2</span><h3>알아서 보정</h3><p class="muted">어두운 실내 사진은 밝게, 흐린 색은 또렷하게 맞춥니다. 자연스럽게 · 따뜻하게 · 선명하게 · 필름 감성 · 흑백 추억 중 느낌을 고르세요.</p></div>
+          <div class="card"><span class="num">3</span><h3>자막·음악까지</h3><p class="muted">맨 앞 제목 카드, 장면마다 한 줄 자막, 찍은 날짜, 끝맺음 한마디. 배경음악을 넣으면 아이 목소리가 나올 때 음악을 자동으로 줄입니다.</p></div>
+        </div>
+        <div class="row" style="margin-top:20px"><a class="btn primary" href="memories.html">추억 영상 만들기 →</a></div>
+        <p class="note">손 들어 볼까요? 휴대폰 사진첩에 <b>아이 사진이 1,000장 넘는</b> 분 🙋 그중 영상으로 만들어 둔 건 몇 개인가요?</p>
+      </div>
+    </section>
+
     <section id="how">
       <div class="wrap">
         <span class="eyebrow">세 걸음</span>
-        <h2>올리고, 고르고, 받으면 끝</h2>
+        <h2>말하기 영상은 이렇게 — 올리고, 고르고, 받으면 끝</h2>
         <div class="grid three" style="margin-top:24px">
           <div class="card"><span class="num">1</span><h3>공백 자르기</h3><p class="muted">영상을 열면 파형이 그려지고 공백이 빨갛게 표시됩니다. 슬라이더 3개(소리 크기 · 공백 길이 · 앞뒤 여유)로 얼마나 자를지 정합니다.</p></div>
           <div class="card"><span class="num">2</span><h3>살릴 곳 고르기</h3><p class="muted">일부러 쉰 「뜸」은 살리고 싶죠. 타임라인 아래 띠의 칸을 누르면 살리기 ↔ 자르기가 바뀝니다. 미리보기는 자른 결과 그대로 재생됩니다.</p></div>
@@ -124,6 +141,7 @@ $ node songcut.mjs shorts talk_cut.mp4 --title "공백 0초 편집 비법" --hoo
         <div class="grid three" style="margin-top:20px">
           <div class="card"><h3>내용을 이해하지 않습니다</h3><p class="muted">공백은 <b>소리 크기</b>로만 찾습니다. 「재미없는 부분」을 골라 주지는 않습니다. 배경음악이 깔린 영상은 공백이 잘 안 잡힙니다.</p></div>
           <div class="card"><h3>자막을 받아 적지 않습니다</h3><p class="muted">음성 인식은 없습니다. 대본이 있으면 클로드에게 .srt 로 만들어 달라고 하세요.</p></div>
+          <div class="card"><h3>사진 속 내용을 보지 않습니다</h3><p class="muted">추억 영상의 정리·보정은 날짜·소리·밝기로 합니다. 누가 웃는지, 어느 장면이 예쁜지는 모릅니다. 순서와 구간은 직접 바꿀 수 있어요. 아이폰 HEIC 사진은 jpg 로 바꿔 넣어 주세요.</p></div>
           <div class="card"><h3>조회수를 약속하지 않습니다</h3><p class="muted">편집 시간을 줄여 줄 뿐입니다. 웹 편집기 내보내기는 영상 길이만큼(1배속) 걸립니다.</p></div>
         </div>
       </div>
@@ -133,7 +151,7 @@ $ node songcut.mjs shorts talk_cut.mp4 --title "공백 0초 편집 비법" --hoo
       <div class="wrap">
         <span class="eyebrow">자주 묻는 것</span>
         <h2>궁금한 점</h2>
-        <details><summary>영상이 서버로 올라가나요?</summary><p class="muted">아니요. 웹 편집기는 브라우저 안에서만 처리하고, 클로드 스킬은 내 컴퓨터의 ffmpeg 로 처리합니다.</p></details>
+        <details><summary>아이 사진이 서버로 올라가나요?</summary><p class="muted">아니요. 웹 편집기와 추억 영상은 브라우저 안에서만 처리하고, 클로드 스킬은 내 컴퓨터의 ffmpeg 로 처리합니다.</p></details>
         <details><summary>어떤 브라우저에서 되나요?</summary><p class="muted">크롬·엣지를 권합니다. 크롬은 mp4 로, 그 밖의 브라우저는 webm 으로 내보낼 수 있습니다. 내보내는 동안 탭을 앞에 두세요.</p></details>
         <details><summary>한글이 □ 로 깨지면요?</summary><p class="muted">웹 편집기는 Noto Sans KR 을 불러와 씁니다. 스킬은 맑은 고딕·애플 SD 고딕 Neo·나눔고딕을 찾아 쓰고, 없으면 <code>doctor</code> 명령이 알려 줍니다.</p></details>
         <details><summary>강의에서 수강생과 같이 써도 되나요?</summary><p class="muted">무료 구성은 누구나 쓸 수 있습니다. 교안·실습 파일을 함께 쓰려면 강의 패키지를 확인하세요.</p></details>

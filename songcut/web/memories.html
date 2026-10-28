@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>쏭컷 추억 영상</title>
+  <meta name="description" content="아이 사진과 동영상을 올리면 날짜순 정리 · 하이라이트 고르기 · 자동 보정 · 자막 · 음악까지 넣어 영상 한 편으로 만들어 줍니다. 사진은 서버로 올라가지 않습니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="index.html">쏭<b>컷</b></a>
+      <nav><a href="editor.html">말하기 영상 컷편집</a><a href="index.html#packages">패키지</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 style="font-size:clamp(26px,4vw,36px);margin-top:28px">추억 영상 만들기</h1>
+    <p class="muted" style="margin:0">사진·동영상을 올리면 알아서 이어 붙입니다. 파일은 <b>내 브라우저 안에서만</b> 처리되고 서버로 올라가지 않습니다.</p>
+
+    <div class="editor">
+      <div>
+        <label id="drop" class="drop">
+          <input id="files" type="file" accept="image/*,video/*" multiple hidden>
+          <h3>사진·동영상을 한꺼번에 끌어다 놓거나 눌러서 고르세요</h3>
+          <p class="muted" style="margin:0">여러 개를 한 번에 고를 수 있어요 · 사진 jpg·png·webp · 동영상 mp4·webm·mov</p>
+        </label>
+
+        <div id="work" class="hidden">
+          <div class="stage"><canvas id="view" width="1080" height="1920"></canvas></div>
+          <div class="row" style="margin-top:12px">
+            <button id="play" class="btn primary">▶ 미리보기</button>
+            <button id="addMore" class="btn small">+ 더 넣기</button>
+            <span id="total" class="muted" style="font-size:14px;margin-left:auto"></span>
+          </div>
+          <h3 style="margin-top:22px">순서와 자막 <span class="muted" style="font-size:14px;font-weight:400">— 찍은 날짜순으로 놓았어요. ↑↓ 로 바꾸세요</span></h3>
+          <ol id="list" class="clips"></ol>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="card">
+          <h3>① 이야기</h3>
+          <div class="field"><label for="title">맨 앞 제목</label><input id="title" type="text" maxlength="30" placeholder="예: 우리 하은이 첫 운동회"></div>
+          <div class="field"><label for="ending">맨 끝 한마디</label><input id="ending" type="text" maxlength="40" placeholder="예: 오늘도 고마워, 사랑해"></div>
+          <label class="check"><input id="dateStamp" type="checkbox" checked> 사진 구석에 찍은 날짜 표시</label>
+        </div>
+
+        <div class="card">
+          <h3>② 보정과 화면</h3>
+          <div class="field"><label for="look">느낌</label>
+            <select id="look"><option value="natural">자연스럽게</option><option value="warm">따뜻하게</option><option value="vivid">선명하게</option><option value="film">필름 감성</option><option value="mono">흑백 추억</option><option value="none">보정 안 함</option></select>
+          </div>
+          <label class="check"><input id="autoFix" type="checkbox" checked> 어두운 사진은 밝게 · 흐린 색은 또렷하게 (자동 보정)</label>
+          <div class="field"><label for="layout">화면 비율</label>
+            <select id="layout"><option value="shorts">세로 9:16 (릴스·쇼츠·카톡)</option><option value="wide">가로 16:9 (유튜브·TV)</option><option value="square">정사각 1:1 (인스타 피드)</option></select>
+          </div>
+          <div class="field"><label for="photoSec">사진 한 장 <span id="photoSecV">3초</span></label><input id="photoSec" type="range" min="1.5" max="6" step="0.5" value="3"></div>
+          <div class="field"><label for="clipSec">동영상 한 개 <span id="clipSecV">5초</span></label><input id="clipSec" type="range" min="2" max="15" step="1" value="5"></div>
+          <p class="muted" style="font-size:13px;margin:0">동영상은 <b>소리가 가장 활발한 구간</b>(웃음·환호)을 골라 씁니다. 목록에서 시작 시간을 직접 바꿀 수도 있어요.</p>
+        </div>
+
+        <div class="card">
+          <h3>③ 소리</h3>
+          <label class="check"><input id="origSound" type="checkbox" checked> 동영상 원래 소리 살리기</label>
+          <div class="field"><label for="music">배경음악 (mp3 · 내 음악이나 무료 음원)</label><input id="music" type="file" accept="audio/*"></div>
+          <div class="field"><label for="musicVol">음악 크기 <span id="musicVolV">60%</span></label><input id="musicVol" type="range" min="0" max="1" step="0.05" value="0.6"></div>
+          <p class="muted" style="font-size:13px;margin:0">동영상에서 말소리가 나올 때는 음악을 자동으로 줄입니다. 유행가 등 남의 음악은 SNS에서 소리가 지워질 수 있어요.</p>
+        </div>
+
+        <div class="card">
+          <h3>④ 내보내기</h3>
+          <button id="export" class="btn primary" style="width:100%" disabled>영상 만들기</button>
+          <div id="prog" class="hidden" style="margin-top:10px"><div class="progress"><i id="bar"></i></div><p id="progText" class="muted" style="font-size:13px;margin:6px 0 0"></p></div>
+          <p class="muted" style="font-size:13px">영상 길이만큼(1배속) 걸립니다. 그동안 이 탭을 앞에 두세요. 크롬은 mp4, 그 밖의 브라우저는 webm 으로 받습니다.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <video id="vid" playsinline preload="auto" class="hidden"></video>
+  <audio id="bgm" preload="auto" class="hidden"></audio>
+  <script src="memories.js"></script>
+</body>
+</html>
